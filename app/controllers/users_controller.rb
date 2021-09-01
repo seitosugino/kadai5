@@ -1,6 +1,21 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update]
+  
+  
+  def following
+    @title = "Following"
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
 
+  def followers
+    @title = "Followers"
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+  
   def show
     @user = User.find(params[:id])
     @books = @user.books
