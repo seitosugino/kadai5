@@ -25,9 +25,9 @@ class SearchsController < ApplicationController
         User.where('name LIKE ?', '%'+content+'%')
         else
           if method == 'forward'
-            User.where('name LIKE ?', '%'+content)
-          else
             User.where('name LIKE ?', content+'%')
+          else
+            User.where('name LIKE ?', '%'+content)
           end
         end
       end
@@ -40,9 +40,9 @@ class SearchsController < ApplicationController
         Book.where('title LIKE ?', '%'+content+'%')
         else
           if method == 'forward'
-            Book.where('name LIKE ?', '%'+content)
+            Book.where('title LIKE ?', content+'%')
           else
-            Book.where('name LIKE ?', content+'%')
+            Book.where('title LIKE ?', '%'+content)
           end
         end
         
