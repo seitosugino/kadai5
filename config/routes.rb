@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :users,only: [:show,:index,:edit,:update] 
-  resource :relationships, only: [:create, :destroy]
+  resources :users,only: [:show,:index,:edit,:update]
+  resources :relationships, only: [:create, :destroy]
 
   resources :books do
    resource :favorites, only: [:create, :destroy]
