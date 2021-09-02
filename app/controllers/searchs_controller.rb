@@ -21,14 +21,31 @@ class SearchsController < ApplicationController
         User.where(name: content)
       # 選択した検索方法がが部分一致だったら
       else
+        if method == 'partial'
         User.where('name LIKE ?', '%'+content+'%')
+        else
+          if method == 'forward'
+            User.where('name LIKE ?', '%'+content)
+          else
+            User.where('name LIKE ?', content+'%')
+          end
+        end
       end
-    # 選択したモデルがpostだったら
+    # 選択したモデルがbookだったら
     elsif model == 'book'
       if method == 'perfect'
         Book.where(title: content)
       else
+        if method == 'partial'
         Book.where('title LIKE ?', '%'+content+'%')
+        else
+          if method == 'forward'
+            Book.where('name LIKE ?', '%'+content)
+          else
+            Book.where('name LIKE ?', content+'%')
+          end
+        end
+        
       end
     end
   end
